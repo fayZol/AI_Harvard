@@ -186,5 +186,3 @@ def min_value(board):
         v = min(v,d)
 
     return v
-    
-#    raise NotImplementedError
