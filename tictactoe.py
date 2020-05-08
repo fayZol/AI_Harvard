@@ -154,53 +154,37 @@ def minimax(board):
                 return action
         else:
             if player(board) == 'X':
-#                v = max_value(board)
-#                for action in actions(board):
-#                    if v == min_value(result(board, action)):
-#                        return action
-                    return (max_value((board)))[1]
+                v = max_value(board)
+                for action in actions(board):
+                    if v == min_value(result(board, action)):
+                        return action
             if player(board) == 'O':
-#                v = min_value(board)
-#                for action in actions(board):
-#                    if v == max_value(result(board, action)):
-#                        return action
-                        return (min_value((board)))[1]                   
+                v = min_value(board)
+                for action in actions(board):
+                    if v == max_value(result(board, action)):
+                        return action               
             
     
 def max_value(board):
-    print('max')
-    print(board)    
     if terminal(board):
-        return [utility(board),None]
+        return utility(board)
     
     v = float("-inf")
     for action in actions(board):
-        print('labasss')    
-        d = (min_value(result(board, action)))[0]
-        print(d)    
+        d = min_value(result(board, action))  
         v = max(v,d)
-        optimal_action = action
-        if d >= v:
-           optimal_action = action
-           print([v,optimal_action])
-    return [v,optimal_action]
+    return v
 
 def min_value(board):
     
-    print('min')
     if terminal(board):
-        return [utility(board),None]
+        return utility(board)
     
     v = float("inf")
     for action in actions(board):
-        print('iciiii')
-        d = (max_value(result(board, action)))[0]
-        print(d)        
+        d = max_value(result(board, action))
         v = min(v,d)
-        optimal_action = action
-        if d<=v:
-            optimal_action = action
-            print([v,optimal_action])
-    return [v,optimal_action]
+
+    return v
     
 #    raise NotImplementedError
