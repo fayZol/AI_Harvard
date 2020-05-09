@@ -149,10 +149,10 @@ def minimax(board):
     if terminal(board):
         return None
     else:
-        if len(actions(board)) == 9:
-            for action in actions(board):
-                return action
-        else:
+#        if len(actions(board)) == 9:
+#            for action in actions(board):
+#                return action
+#        else:
             if player(board) == 'X':
                 v = max_value(board)
                 for action in actions(board):
@@ -173,6 +173,8 @@ def max_value(board):
     for action in actions(board):
         d = min_value(result(board, action))  
         v = max(v,d)
+        if v == 1:
+            break
     return v
 
 def min_value(board):
@@ -184,5 +186,6 @@ def min_value(board):
     for action in actions(board):
         d = max_value(result(board, action))
         v = min(v,d)
-
+        if v == -1:
+            break
     return v
