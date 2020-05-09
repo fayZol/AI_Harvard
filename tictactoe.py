@@ -173,6 +173,7 @@ def max_value(board):
     for action in actions(board):
         d = min_value(result(board, action))  
         v = max(v,d)
+        # pruning: best value ever is +1 if we get it with an action no need to continue        
         if v == 1:
             break
     return v
@@ -186,6 +187,7 @@ def min_value(board):
     for action in actions(board):
         d = max_value(result(board, action))
         v = min(v,d)
+        # pruning: best value ever is -1 so if we get it with an action no need to continue
         if v == -1:
             break
     return v
